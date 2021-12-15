@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2021072300;
+$plugin->version = 2021121500;
 $plugin->requires = 2016120500;
 $plugin->cron = 0;
 $plugin->component = 'block_qtracker';

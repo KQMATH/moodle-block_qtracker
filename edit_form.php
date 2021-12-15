@@ -23,12 +23,12 @@
  */
 
  /**
- * Form for editing Question Tracker block instances.
- *
- * @author      André Storhaug <andr3.storhaug@gmail.com>
- * @copyright   2021 NTNU
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+  * Form for editing Question Tracker block instances.
+  *
+  * @author      André Storhaug <andr3.storhaug@gmail.com>
+  * @copyright   2021 NTNU
+  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+  */
 class block_qtracker_edit_form extends block_edit_form {
 
     protected function specific_definition($mform) {

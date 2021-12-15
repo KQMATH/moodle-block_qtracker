@@ -26,6 +26,7 @@
 
 use \local_qtracker\output\issue_registration_block;
 use \block_qtracker\quiz_qtracker;
+use \block_qtracker\capquiz_qtracker;
 
 defined('MOODLE_INTERNAL') || die();
 
