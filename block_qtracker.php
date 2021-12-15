@@ -15,8 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Main interface to Question Tracker
- * Provides block for registering question issues for quiz module
+ * Question Tracker block definition
+ * Provides block for registering question issues for activity modules
  *
  * @package     block_qtracker
  * @author      André Storhaug <andr3.storhaug@gmail.com>
@@ -30,8 +30,7 @@ use \block_qtracker\quiz_qtracker;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Main interface to Question Tracker
- * Provides block for registering question issues for quiz module
+ * Block for registering question issues for activity modules
  *
  * @author      André Storhaug <andr3.storhaug@gmail.com>
  * @copyright   2021 NTNU
@@ -46,11 +45,11 @@ class block_qtracker extends \block_base {
         return array('all' => false, 'mod-quiz' => true, 'mod-capquiz' => true);
     }
 
-    function has_config() {
+    public function has_config() {
         return true;
     }
 
-    function get_content() {
+    public function get_content() {
         global $COURSE;
 
         if ($this->content !== null) {
@@ -68,16 +67,16 @@ class block_qtracker extends \block_base {
         $this->content->text = '';
         $this->content->footer = '';
 
-        $qtracker_type = $this->get_qtracker_type();
-        if (is_null($qtracker_type)) {
+        $qtrackertype = $this->get_qtracker_type();
+        if (is_null($qtrackertype)) {
             $this->content->text = get_string('not_supported_qtracker_type', 'block_qtracker');
             return $this->content;
         }
 
-        $active_attempt = $qtracker_type->is_active_attempt();
-        if (!$active_attempt) {
-            $can_view_issues = $qtracker_type->can_view_issues();
-            if ($can_view_issues) {
+        $activeattempt = $qtrackertype->is_active_attempt();
+        if (!$activeattempt) {
+            $canviewissues = $qtrackertype->can_view_issues();
+            if ($canviewissues) {
                 $url = new moodle_url('/local/qtracker/view.php', array('courseid' => $COURSE->id));
                 $this->content->text .= html_writer::link($url, get_string('view_issues', 'block_qtracker'));
             }
@@ -99,9 +98,9 @@ class block_qtracker extends \block_base {
             $this->content->text = html_writer::tag('p', get_string('question_problem_details', 'block_qtracker'));
         }
 
-        $quba = $qtracker_type->get_quba();
-        $slots = $qtracker_type->get_slots();
-        $contextid = $qtracker_type->get_contextid();
+        $quba = $qtrackertype->get_quba();
+        $slots = $qtrackertype->get_slots();
+        $contextid = $qtrackertype->get_contextid();
 
         $templatable = new issue_registration_block($quba, $slots, $contextid);
         $renderer = $this->page->get_renderer('local_qtracker');
@@ -111,9 +110,10 @@ class block_qtracker extends \block_base {
     }
 
     /**
+     * Get the supported activity module type
      * @return base_qtracker
      */
-    function get_qtracker_type() {
+    private function get_qtracker_type() {
         $modname = $this->page->cm->modname;
         switch ($modname) {
             case 'quiz':

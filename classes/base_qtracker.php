@@ -39,29 +39,29 @@ abstract class base_qtracker {
      * Returns the question_usage_by_activity.
      * @return \question_usage_by_activity
      */
-    abstract function get_quba();
+    abstract public function get_quba();
 
     /**
      * Returns the slots.
      * @return array
      */
-    abstract function get_slots();
+    abstract public function get_slots();
 
     /**
      * Returns the context id.
      * @return int
      */
-    abstract function get_contextid();
+    abstract public function get_contextid();
 
     /**
      * Checks if the current user can view submitted issues.
      * @return bool
      */
-    abstract function can_view_issues();
+    abstract public function can_view_issues();
 
     /**
      * Checks if the current page represents an active question attempt.
      * @return bool
      */
-    abstract function is_active_attempt();
+    abstract public function is_active_attempt();
 }
