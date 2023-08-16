@@ -47,7 +47,7 @@ class block_qtracker extends \block_base {
     }
 
     public function has_config() {
-        return true;
+        return false;
     }
 
     public function get_content() {
