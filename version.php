@@ -33,4 +33,4 @@ $plugin->dependencies = array(
     'local_qtracker' => ANY_VERSION,
 );
 $plugin->maturity = MATURITY_BETA;
-$plugin->release = '0.1.0';
+$plugin->release = '0.1.1';
